@@ -37,13 +37,13 @@ public class FrontControllerServletV3 extends HttpServlet {
             return;
         }
 
-        Map<String, String> paramMap = createParamMap(request);
-        ModelView mv = controller.process(paramMap);
+        Map<String, String> paramMap = createParamMap(request); // request 에 있는 parameter 를 map 에 저장
+        ModelView mv = controller.process(paramMap); // Controller 에서 view, model 정보를 담고 return
 
         String viewName = mv.getViewName();
-        MyView view = viewResolver(viewName);
+        MyView view = viewResolver(viewName); // view 의 물리 경로를 담은 MyView
 
-        view.render(mv.getModel(), request, response);
+        view.render(mv.getModel(), request, response); // model 과 함께 view forward
     }
 
     private Map<String, String> createParamMap(HttpServletRequest request) {
