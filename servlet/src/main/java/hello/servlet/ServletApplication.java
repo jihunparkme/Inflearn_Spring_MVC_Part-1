@@ -1,5 +1,6 @@
 package hello.servlet;
 
+import hello.servlet.web.springmvc.v1.SpringMemverFormControllerV1;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
@@ -26,4 +27,11 @@ public class ServletApplication {
 		return new InternalResourceViewResolver("/WEB-INF/views/",".jsp");
 	}
 	*/
+
+	/* @Controller or @Component + @RequestMapping 을 사용하지 않고 직접 Bean 으로 등록
+	@Bean
+	SpringMemverFormControllerV1 springMemverFormControllerV1() {
+		return new SpringMemverFormControllerV1();
+	}
+	 */
 }
