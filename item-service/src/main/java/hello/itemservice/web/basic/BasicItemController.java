@@ -79,10 +79,27 @@ public class BasicItemController {
     /**
      * @ModelAttribute 자체도 생략 가능 + 기존과 동일하게 객체 생성과 함께 모델에 객체를 자동으로 넣어 준다.
      */
-    @PostMapping("/add")
+//    @PostMapping("/add")
     public String addItemV4(Item item) {
         itemRepository.save(item);
         return "basic/item";
+    }
+
+    /**
+     * PRG (Post/Redirect/Get)
+     *
+     * 상품 등록을 완료하고 웹 브라우저를 새로고침 시 상품이 중복 등록되는 오류 해결
+     * 1. 상품 등록 폼 이동
+     * 2. 상품 저장 및 삼품 상세 페이지로 redirect
+     * 3.상품 상세페이지 이동
+     *
+     * @param item
+     * @return
+     */
+    @PostMapping("/add")
+    public String addItemV5(Item item) {
+        itemRepository.save(item);
+        return "redirect:/basic/items/" + item.getId();
     }
 
     @GetMapping("/{itemId}/edit")
